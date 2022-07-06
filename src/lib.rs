@@ -1,12 +1,12 @@
 use anyhow::{bail, Context, Result};
 use chrono::{DateTime, Utc};
 use directories::BaseDirs;
-use serde::de::DeserializeOwned;
-use serde::{Deserialize, Serialize};
-use std::fs;
-use std::fs::File;
-use std::io::{BufReader, Write};
-use std::path::{Path, PathBuf};
+use serde::{de::DeserializeOwned, Deserialize, Serialize};
+use std::{
+    fs::{self, File},
+    io::{BufReader, Write},
+    path::{Path, PathBuf},
+};
 
 pub struct App {
     config: Config,
