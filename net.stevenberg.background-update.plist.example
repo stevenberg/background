@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>net.stevenberg.background-update</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/[BINPATH]/background</string>
+        <string>update</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Minute</key>
+        <integer>0</integer>
+        <key>Hour</key>
+        <integer>0</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/[LOGPATH]/background-update.stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/[LOGPATHA]/background-update.stderr.log</string>
+</dict>
+</plist>
