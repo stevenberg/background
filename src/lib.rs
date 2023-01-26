@@ -57,9 +57,10 @@ impl App {
         );
 
         let error = "Failed to get data from API";
-        let response = reqwest::blocking::get(uri)
+        let response = ureq::get(&uri)
+            .call()
             .context(error)?
-            .text()
+            .into_string()
             .context(error)?;
         let response: Response = serde_json::from_str(&response).context(error)?;
         let data = serde_json::to_string(&response.results).context(error)?;
