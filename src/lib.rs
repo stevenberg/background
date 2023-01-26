@@ -1,10 +1,11 @@
 use anyhow::{bail, Context, Result};
-use chrono::{DateTime, Utc};
+use chrono::{DateTime, Duration, Utc};
 use directories::BaseDirs;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use std::{
     fs::{self, File},
     io::{BufReader, Write},
+    ops::{Add, Sub},
     path::{Path, PathBuf},
 };
 
@@ -63,7 +64,11 @@ impl App {
             .into_string()
             .context(error)?;
         let response: Response = serde_json::from_str(&response).context(error)?;
-        let data = serde_json::to_string(&response.results).context(error)?;
+        let data = Data {
+            sunrise: response.results.sunrise.sub(Duration::minutes(5)),
+            sunset: response.results.sunset.add(Duration::minutes(5)),
+        };
+        let data = serde_json::to_string(&data).context(error)?;
 
         let mut file = File::create(&self.data_path)?;
         write!(file, "{}", data)?;
