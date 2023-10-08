@@ -71,7 +71,7 @@ impl App {
         let data = serde_json::to_string(&data).context(error)?;
 
         let mut file = File::create(&self.data_path)?;
-        write!(file, "{}", data)?;
+        write!(file, "{data}")?;
 
         Ok(())
     }
@@ -90,7 +90,7 @@ impl App {
             "dark"
         };
 
-        println!("{}", status);
+        println!("{status}");
 
         Ok(())
     }
