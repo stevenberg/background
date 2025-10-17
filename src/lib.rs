@@ -61,7 +61,8 @@ impl App {
         let response = ureq::get(&uri)
             .call()
             .context(error)?
-            .into_string()
+            .body_mut()
+            .read_to_string()
             .context(error)?;
         let response: Response = serde_json::from_str(&response).context(error)?;
         let data = Data {
